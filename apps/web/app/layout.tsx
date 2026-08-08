@@ -1,9 +1,12 @@
+'use client'
 import { Geist, Geist_Mono } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils"
 import { TooltipProvider } from "@workspace/ui/components/tooltip"
+import { Provider } from "react-redux"
+import { store } from "@/services/store"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -31,9 +34,13 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
+          <Provider store={store}>
           <ClerkProvider>
             <TooltipProvider>{children}</TooltipProvider>
+
           </ClerkProvider>
+
+          </Provider>
         </ThemeProvider>
       </body>
     </html>

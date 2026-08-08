@@ -12,24 +12,13 @@ services:
      - .:/usr/src/app
      - root_node_modules:/app/node_modules
      - api_node_modules:/app/apps/api/node_modules
+     - api_prisma_generated:/usr/src/app/apps/api/src/generated
    
-   web:
-    build:
-      context: .
-      dockerfile: apps/web/Dockerfile
-    environment:
-      DOPPLER_TOKEN: ${DOPPLER_TOKEN_WEB}
-    ports:
-     - "0.0.0.0:3000:3000"
-    volumes:
-     - .:/app
-     - root_node_modules:/app/node_modules
-     - web_node_modules:/app/apps/web/node_modules
 
 volumes:
   root_node_modules: 
   api_node_modules:
-  web_node_modules:
+  api_prisma_generated:
     
     
 
